@@ -1,7 +1,8 @@
-#ifndef G1-PROBLEME_H_INCLUDED
-#define G1-PROBLEME_H_INCLUDED
+#ifndef G1_PROBLEME_H_INCLUDED
+#define G1_PROBLEME_H_INCLUDED
 #include "G1-Contrainte.h"
 #include "G1-Variable.h"
+#include "G1-Noeud.h"
 class Probleme
 {
     /*---Attributs---*/
@@ -21,9 +22,10 @@ public:
     std::vector<Variable> getVariables();
     std::vector<Contrainte> getContraintes();
     Noeud getNoeud_initial();
-    setVariables(std::vector<Variable> Variables);
-    setContraintes(std::vector<Contrainte> Contraintes);
-    setNoeud_initial(Noeud Noeud_initial);
+    void setVariables(std::vector<Variable> Variables);
+    void setContraintes(std::vector<Contrainte> Contraintes);
+    void setNoeud_initial(Noeud Noeud_initial);
+    void chargement();
 
     std::vector<int> SearchContrainteVariable(const int &Achercher);
 };

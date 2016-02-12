@@ -1,5 +1,5 @@
-#ifndef G1-VARIABLE_H_INCLUDED
-#define G1-VARIABLE_H_INCLUDED
+#ifndef G1_VARIABLE_H_INCLUDED
+#define G1_VARIABLE_H_INCLUDED
 
 class Variable
 {

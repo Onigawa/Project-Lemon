@@ -1,5 +1,10 @@
 #include <vector>
 #include "G1-Probleme.h"
+#include <string.h>
+#include <iostream>
+#include <fstream>
+
+using namespace std;
 
 std::vector<Variable> Probleme::getVariables()
 {
@@ -27,12 +32,12 @@ void Probleme::setNoeud_initial(Noeud Noeud_initial)
 }
 std::vector<int> Probleme::SearchContrainteVariable(const int &Achercher) // Renvoi vecteur contenant les identifiants de toute les contraintes concernant la variable donnée
 {
-    vector<int> Resultat;
+    std::vector<int> Resultat;
     for(unsigned int i=0; i<_Contraintes.size(); i++)
     {
-        for(unsigned int j=0; j<_Contraintes[i].getVariable.size(); i++)
+        for(unsigned int j=0; j<_Contraintes[i].getVariables().size(); i++)
         {
-            if(_Contraintes[i].getVariable[j]==Achercher)
+            if(_Contraintes[i].getVariables()[j]==Achercher)
             {
                 Resultat.push_back(i);
             }
@@ -43,8 +48,8 @@ std::vector<int> Probleme::SearchContrainteVariable(const int &Achercher) // Ren
 void Probleme::chargement()
 {
     int identifiant,code, variable;
-    string mon_fichier = "Probleme.txt";
-    ifstream fichier(mon_fichier.c_str(), ios::in);
+    std::string mon_fichier = "Probleme.txt";
+    std::ifstream fichier(mon_fichier.c_str(), ios::in);
     if(fichier)
     {
         int nbcontrainte;

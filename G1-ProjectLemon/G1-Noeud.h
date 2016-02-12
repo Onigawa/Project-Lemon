@@ -1,7 +1,7 @@
-#ifndef G1-NOEUD_H_INCLUDED
-#define G1-NOEUD_H_INCLUDED
-#include "Variable.h"
-
+#ifndef G1_NOEUD_H_INCLUDED
+#define G1_NOEUD_H_INCLUDED
+#include "G1-Variable.h"
+#include <vector>
 class Noeud
 {
     /*---Attributs---*/

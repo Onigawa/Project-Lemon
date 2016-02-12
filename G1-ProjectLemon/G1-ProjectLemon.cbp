@@ -32,6 +32,14 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="G1-Contrainte.cpp" />
+		<Unit filename="G1-Contrainte.h" />
+		<Unit filename="G1-Noeud.cpp" />
+		<Unit filename="G1-Noeud.h" />
+		<Unit filename="G1-Probleme.cpp" />
+		<Unit filename="G1-Probleme.h" />
+		<Unit filename="G1-Variable.cpp" />
+		<Unit filename="G1-Variable.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />

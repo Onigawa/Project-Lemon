@@ -9,6 +9,10 @@ int Contrainte::getIdentifiant()
 {
     return _Identifiant;
 }
+int Contrainte::getCode()
+{
+    return _Code;
+}
 std::vector<int> Contrainte::getVariables()
 {
     return _Variables;
