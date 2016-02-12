@@ -1,6 +1,6 @@
 #include <vector>
 #include "G1-Variable.h"
-
+int Variable::nbrVariable=0;
 
 int Variable::getIdentifiant()
 {

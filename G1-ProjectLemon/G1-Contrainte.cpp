@@ -4,6 +4,7 @@
 #include "G1-Variable.h"
 
 using namespace std;
+int Contrainte::nbrContrainte=0;
 
 int Contrainte::getIdentifiant()
 {
