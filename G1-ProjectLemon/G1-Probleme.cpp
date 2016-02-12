@@ -105,3 +105,12 @@ void Probleme::chargement()
 }
 
 
+void CreaNoeud(){
+
+///On créé un noeud avec la variable 1
+Noeud initial;
+
+///On crée un premier suivant avec sa première valeur
+///On crée un deuxième suivant ...
+///si plus de suivant arret
+}
