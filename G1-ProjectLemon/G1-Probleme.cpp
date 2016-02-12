@@ -104,13 +104,77 @@ void Probleme::chargement()
     return;
 }
 
+void Probleme::addAttribution(Attribution att)
+{
+    _EAC.push_back(att);
+}
 
 void CreaNoeud(){
 
 ///On créé un noeud avec la variable 1
-Noeud initial;
-
 ///On crée un premier suivant avec sa première valeur
 ///On crée un deuxième suivant ...
 ///si plus de suivant arret
+}
+
+std::vector<Attribution> Probleme::methode_triviale(std::vector<Attribution> EA_entree)
+{
+    bool Attribue=false;
+    Variable varchoisie;
+    std::vector<Attribution> EA_retour;
+
+
+    if(true/*Est complet*/)
+    {
+        for(unsigned int i=0; i<_Contraintes.size();i++) ///On vérifie que pour chaque contrainte
+        {
+            if(_Contraintes[i].isValable())///Elle sont vérifiés
+            {
+                return EA_entree;  ///Si oui on retourne la solution
+            }else
+            {
+            EA_retour.clear();
+            return EA_retour; ///Si non on retourne echec
+            }
+        }
+    }else
+    {
+        for(unsigned int i=0;i<_Variables.size();i++) ///On cherche une variable non attribue
+        {
+            Attribue=false;
+            for(unsigned int j=0;j<_EAC.size();i++)
+            {
+                if(_Variables[i].getIdentifiant()==_EAC[j].getVar().getIdentifiant())
+                {
+                    Attribue=true;  ///Cette variable est deja attribuée
+                    j=_EAC.size(); //Debranchement
+                }
+            }
+            if(Attribue==false)///La variable n'est pas attribuée
+            {
+                varchoisie=_Variables[i]; ///On la choisie
+                i=_Variables.size(); //Debranchement
+            }
+        }
+         if (Attribue==true) ///Si toutes les variables sont attribuées
+         {
+            EA_retour.clear();
+            return EA_retour;
+         }
+
+        for(unsigned int i=0;i<varchoisie.getDomaine().size();i++) ///Pour tout le domaine de definition
+        {
+            int val=varchoisie.getDomaine()[i];
+            Attribution att(varchoisie,val);
+            EA_retour = methode_triviale(EA_entree.push_back(att));  ///Ea_retour=triviale(Ea_entree+"varchoisie=val")
+        }
+
+        if(!EA_retour.empty())
+        {
+            return EA_retour;
+        }
+
+    }
+            EA_retour.clear();
+            return EA_retour;
 }

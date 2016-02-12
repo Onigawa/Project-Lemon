@@ -3,6 +3,7 @@
 #include "G1-Contrainte.h"
 #include "G1-Variable.h"
 #include "G1-Noeud.h"
+#include "G1-Attribution.h"
 class Probleme
 {
     /*---Attributs---*/
@@ -10,6 +11,7 @@ private:
     std::vector<Variable> _Variables;           // Vector des variables initiales
     std::vector<Contrainte> _Contraintes;           // Vector des Contrainte initiales
     Noeud _Noeud_initial;    //Noeud de débur de l'arbre de recherche
+    std::vector<Attribution> _EAC; //Ensemble des Attribution en cours
 
     /*---Méthodes---*/
     /// Methodes optionnelles mais définies dans le cas où elles pourraient être utiles pour le projet
@@ -26,8 +28,10 @@ public:
     void setContraintes(std::vector<Contrainte> Contraintes);
     void setNoeud_initial(Noeud Noeud_initial);
     void chargement();
+    void addAttribution(Attribution att);
 
     std::vector<int> SearchContrainteVariable(const int &Achercher);
+    std::vector<Attribution> methode_triviale(std::vector<Attribution> EA_entree);
 };
 
 #endif // G1-PROBLEME_H_INCLUDED

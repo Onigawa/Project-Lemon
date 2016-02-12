@@ -18,22 +18,24 @@
 	"G1-Variable.h"
 	<vector>
 
-1455306675 source:c:\users\k\documents\github\project-lemon\g1-projectlemon\g1-probleme.cpp
+1455308713 source:c:\users\k\documents\github\project-lemon\g1-projectlemon\g1-probleme.cpp
 	<vector>
 	"G1-Probleme.h"
 	<string.h>
 	<iostream>
 	<fstream>
 
-1455300385 c:\users\k\documents\github\project-lemon\g1-projectlemon\g1-probleme.h
+1455308774 c:\users\k\documents\github\project-lemon\g1-projectlemon\g1-probleme.h
 	"G1-Contrainte.h"
 	"G1-Variable.h"
 	"G1-Noeud.h"
+	"G1-Attribution.h"
 
 1455302794 c:\users\k\documents\github\project-lemon\g1-projectlemon\g1-contrainte.h
 	<vector>
 
-1455303291 c:\users\k\documents\github\project-lemon\g1-projectlemon\g1-variable.h
+1455308406 c:\users\k\documents\github\project-lemon\g1-projectlemon\g1-variable.h
+	<vector>
 
 1455303291 source:c:\users\k\documents\github\project-lemon\g1-projectlemon\g1-variable.cpp
 	<vector>
@@ -46,5 +48,11 @@
 	<iostream>
 	"G1-Contrainte.h"
 	<vector>
+	"G1-Variable.h"
+
+1455308368 source:c:\users\k\documents\github\project-lemon\g1-projectlemon\g1-attribution.cpp
+	"G1-Attribution.h"
+
+1455308800 c:\users\k\documents\github\project-lemon\g1-projectlemon\g1-attribution.h
 	"G1-Variable.h"
 

@@ -1,6 +1,6 @@
 #ifndef G1_VARIABLE_H_INCLUDED
 #define G1_VARIABLE_H_INCLUDED
-
+#include <vector>
 class Variable
 {
     /*---Attributs---*/
