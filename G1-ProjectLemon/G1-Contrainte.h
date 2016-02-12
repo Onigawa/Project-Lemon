@@ -6,7 +6,7 @@ class Contrainte
 private:
     int _Identifiant;         // Identifiant unique de la contrainte
     int _Code;                // Code d'identification de la contrainte
-    std::vector<int> _Variables;           // Vector de stockage des variables
+    std::vector<Variable> _Variables;           // Vector de stockage des variables
 
     /*---Méthodes---*/
     /// Methodes optionnelles mais définies dans le cas où elles pourraient être utiles pour le projet
@@ -16,6 +16,12 @@ public:
     Contrainte(const Contrainte* contrainte);
     Contrainte(int Identifiant,int Code, std::vector<int> Variables);
     ~Contrainte(){}      // Destructeur
+    int getIdentifiant();
+    int getCode();
+    std::vector<Variable> getVariables();
+    void setIdentifiant(int Identifiant);
+    void setCode(int Code);
+    void setVariables(std::vector<Variable> Variables);
 };
 
 

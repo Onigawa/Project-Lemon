@@ -16,5 +16,9 @@ public:
     Variable(const Variable* Variable);
     Variable(int Identifiant, std::vector<int> Domaine);
     ~Variable(){}      // Destructeur
-
+    int getIdentifiant();
+    std::vector<int> getDomaine();
+    void setIdentifiant(int);
+    void setDomaine(std::vector<int>);
+};
 #endif // G1-VARIABLE_H_INCLUDED
