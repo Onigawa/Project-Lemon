@@ -1,7 +1,31 @@
 #include <iostream>
 #include "G1-Contrainte.h"
+#include <vector>
+#include "G1-Variable.h"
 
 using namespace std;
+
+int Contrainte::getIdentifiant()
+{
+    return _Identifiant;
+}
+std::vector<int> Contrainte::getVariables()
+{
+    return _Variables;
+}
+void Contrainte::setIdentifiant(int Identifiant)
+{
+    _Identifiant = Identifiant;
+}
+void Contrainte::setCode(int Code)
+{
+    _Code = Code;
+}
+void Contrainte::setVariables(std::vector<int> Variables)
+{
+    _Variables = Variables;
+}
+
 
 bool Contrainte::isValable()
 {
@@ -67,3 +91,6 @@ bool Contrainte::isValable()
     }
     return false;
 }
+
+
+
