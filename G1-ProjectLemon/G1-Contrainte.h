@@ -1,5 +1,5 @@
-#ifndef G1-CONTRAINTE_H_INCLUDED
-#define G1-CONTRAINTE_H_INCLUDED
+#ifndef G1_CONTRAINTE_H_INCLUDED
+#define G1_CONTRAINTE_H_INCLUDED
 class Contrainte
 {
     /*---Attributs---*/

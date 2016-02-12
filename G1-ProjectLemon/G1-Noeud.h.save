@@ -1,7 +1,6 @@
 #ifndef G1_NOEUD_H_INCLUDED
 #define G1_NOEUD_H_INCLUDED
-
-#include "G1-Variable.h"
+#include "Variable.h"
 
 class Noeud
 {

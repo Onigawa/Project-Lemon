@@ -1,12 +1,16 @@
-#ifndef G1_PROBLEME_H_INCLUDED
+#ifndef G1-PROBLEME_H_INCLUDED
 
-#define G1_PROBLEME_H_INCLUDED
+#define G1-PROBLEME_H_INCLUDED
 
 #include <vector>
 
 #include "G1-Variable.h"
 #include "G1-Noeud.h"
 #include "G1-Contrainte.h"
+
+class Noeud;
+class Variable;
+class Contrainte;
 
 class Probleme
 {
