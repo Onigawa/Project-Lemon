@@ -1,6 +1,7 @@
 #ifndef G1-PROBLEME_H_INCLUDED
 #define G1-PROBLEME_H_INCLUDED
-
+#include "G1-Contrainte.h"
+#include "G1-Variable.h"
 class Probleme
 {
     /*---Attributs---*/
@@ -23,6 +24,8 @@ public:
     setVariables(std::vector<Variable> Variables);
     setContraintes(std::vector<Contrainte> Contraintes);
     setNoeud_initial(Noeud Noeud_initial);
+
+    std::vector<int> SearchContrainteVariable(const int &Achercher);
 };
 
 #endif // G1-PROBLEME_H_INCLUDED
