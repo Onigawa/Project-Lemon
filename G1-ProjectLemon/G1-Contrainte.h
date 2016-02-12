@@ -1,5 +1,7 @@
 #ifndef G1-CONTRAINTE_H_INCLUDED
 #define G1-CONTRAINTE_H_INCLUDED
+#include <vector>
+#include "G1-Variable.h"
 class Contrainte
 {
     /*---Attributs---*/
@@ -22,6 +24,7 @@ public:
     void setIdentifiant(int Identifiant);
     void setCode(int Code);
     void setVariables(std::vector<int> Variables);
+    bool isValable();
 };
 
 
