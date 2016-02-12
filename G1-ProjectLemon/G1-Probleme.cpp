@@ -1,6 +1,30 @@
 #include <vector>
 #include "G1-Probleme.h"
 
+std::vector<Variable> Probleme::getVariables()
+{
+    return _Variables;
+}
+std::vector<Contrainte> Probleme::getContraintes()
+{
+    return _Contraintes;
+}
+Noeud Probleme::getNoeud_initial()
+{
+    return _Noeud_initial;
+}
+void Probleme::setVariables(std::vector<Variable> Variables)
+{
+    _Variables = Variables;
+}
+void Probleme::setContraintes(std::vector<Contrainte> Contraintes)
+{
+    _Contraintes = Contraintes;
+}
+void Probleme::setNoeud_initial(Noeud Noeud_initial)
+{
+    _Noeud_initial = Noeud_initial;
+}
 std::vector<int> Probleme::SearchContrainteVariable(const int &Achercher) // Renvoi vecteur contenant les identifiants de toute les contraintes concernant la variable donnée
 {
     vector<int> Resultat;
