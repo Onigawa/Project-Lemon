@@ -1,3 +1,7 @@
+#include <iostream>
+#include "G1-Contrainte.h"
+
+using namespace std;
 
 bool Contrainte::isValable()
 {
