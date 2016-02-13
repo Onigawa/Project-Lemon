@@ -1,6 +1,6 @@
 #ifndef G1_VARIABLE_H_INCLUDED
 #define G1_VARIABLE_H_INCLUDED
-
+#include <vector>
 class Variable
 {
     /*---Attributs---*/
@@ -8,11 +8,13 @@ private:
     int _Identifiant;         // Identifiant unique de la Variable
     std::vector<int> _Domaine;           // Vector de stockage du domaine de definition
 
+
     /*---Méthodes---*/
     /// Methodes optionnelles mais définies dans le cas où elles pourraient être utiles pour le projet
 
 public:
-    Variable(){}      // Constructeur
+    static int nbrVariable;
+    Variable(){_Identifiant=nbrVariable;nbrVariable++;}      // Constructeur
     Variable(const Variable* Variable);
     Variable(int Identifiant, std::vector<int> Domaine);
     ~Variable(){}      // Destructeur
