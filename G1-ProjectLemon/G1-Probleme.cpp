@@ -142,12 +142,12 @@ std::vector<Attribution> Probleme::methode_triviale(std::vector<Attribution> EA_
         for(unsigned int i=0;i<_Variables.size();i++) ///On cherche une variable non attribue
         {
             Attribue=false;
-            for(unsigned int j=0;j<_EAC.size();i++)
+            for(unsigned int j=0;j<EA_entree.size();i++)
             {
-                if(_Variables[i].getIdentifiant()==_EAC[j].getVar().getIdentifiant())
+                if(_Variables[i].getIdentifiant()==EA_entree[j].getVar().getIdentifiant())
                 {
                     Attribue=true;  ///Cette variable est deja attribuée
-                    j=_EAC.size(); //Debranchement
+                    j=EA_entree.size(); //Debranchement
                 }
             }
             if(Attribue==false)///La variable n'est pas attribuée
@@ -166,7 +166,8 @@ std::vector<Attribution> Probleme::methode_triviale(std::vector<Attribution> EA_
         {
             int val=varchoisie.getDomaine()[i];
             Attribution att(varchoisie,val);
-            EA_retour = methode_triviale(EA_entree.push_back(att));  ///Ea_retour=triviale(Ea_entree+"varchoisie=val")
+            EA_entree.push_back(att);
+            EA_retour = methode_triviale(EA_entree);  ///Ea_retour=triviale(Ea_entree+"varchoisie=val")
         }
 
         if(!EA_retour.empty())
