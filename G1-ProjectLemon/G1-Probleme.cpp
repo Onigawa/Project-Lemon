@@ -30,16 +30,16 @@ void Probleme::setNoeud_initial(Noeud Noeud_initial)
 {
     _Noeud_initial = Noeud_initial;
 }
-std::vector<int> Probleme::SearchContrainteVariable(const int &Achercher) // Renvoi vecteur contenant les identifiants de toute les contraintes concernant la variable donnée
+std::vector<Contrainte> Probleme::SearchContrainteVariable(const int &Achercher) // Renvoi vecteur contenant les identifiants de toute les contraintes concernant la variable donnée
 {
-    std::vector<int> Resultat;
+    std::vector<Contrainte> Resultat;
     for(unsigned int i=0; i<_Contraintes.size(); i++)
     {
         for(unsigned int j=0; j<_Contraintes[i].getVariables().size(); i++)
         {
             if(_Contraintes[i].getVariables()[j]==Achercher)
             {
-                Resultat.push_back(i);
+                Resultat.push_back(_Contraintes[i]);
             }
         }
     }
@@ -91,7 +91,8 @@ void Probleme::chargement()
                     cout << domaine << " ";
                     //mettre la valeur du domaine quelque part
                 }
-            }while(domaine != -1);
+            }
+            while(domaine != -1);
             cout << endl;
 
         }
@@ -109,7 +110,8 @@ void Probleme::addAttribution(Attribution att)
     _EAC.push_back(att);
 }
 
-void CreaNoeud(){
+void CreaNoeud()
+{
 
 ///On créé un noeud avec la variable 1
 ///On crée un premier suivant avec sa première valeur
@@ -124,27 +126,29 @@ std::vector<Attribution> Probleme::methode_triviale(std::vector<Attribution> EA_
     std::vector<Attribution> EA_retour;
 
 
-    if(true/*Est complet*/)
+    if(isComplet())
     {
-        for(unsigned int i=0; i<_Contraintes.size();i++) ///On vérifie que pour chaque contrainte
+        for(unsigned int i=0; i<_Contraintes.size(); i++) ///On vérifie que pour chaque contrainte
         {
             if(_Contraintes[i].isValable())///Elle sont vérifiés
             {
                 return EA_entree;  ///Si oui on retourne la solution
-            }else
+            }
+            else
             {
-            EA_retour.clear();
-            return EA_retour; ///Si non on retourne echec
+                EA_retour.clear();
+                return EA_retour; ///Si non on retourne echec
             }
         }
-    }else
+    }
+    else
     {
-        for(unsigned int i=0;i<_Variables.size();i++) ///On cherche une variable non attribue
+        for(unsigned int i=0; i<_Variables.size(); i++) ///On cherche une variable non attribue
         {
             Attribue=false;
-            for(unsigned int j=0;j<EA_entree.size();i++)
+            for(unsigned int j=0; j<EA_entree.size(); i++)
             {
-                if(_Variables[i].getIdentifiant()==EA_entree[j].getVar().getIdentifiant())
+                if(_Variables[i].getIdentifiant()==EA_entree[j].getVar())
                 {
                     Attribue=true;  ///Cette variable est deja attribuée
                     j=EA_entree.size(); //Debranchement
@@ -156,16 +160,17 @@ std::vector<Attribution> Probleme::methode_triviale(std::vector<Attribution> EA_
                 i=_Variables.size(); //Debranchement
             }
         }
-         if (Attribue==true) ///Si toutes les variables sont attribuées
-         {
+        if (Attribue==true) ///Si toutes les variables sont attribuées
+        {
             EA_retour.clear();
             return EA_retour;
-         }
+        }
 
-        for(unsigned int i=0;i<varchoisie.getDomaine().size();i++) ///Pour tout le domaine de definition
+        for(unsigned int i=0; i<varchoisie.getDomaine().size(); i++) ///Pour tout le domaine de definition
         {
             int val=varchoisie.getDomaine()[i];
-            Attribution att(varchoisie,val);
+            int var=varchoisie.getIdentifiant();
+            Attribution att(var,val);
             EA_entree.push_back(att);
             EA_retour = methode_triviale(EA_entree);  ///Ea_retour=triviale(Ea_entree+"varchoisie=val")
         }
@@ -176,6 +181,180 @@ std::vector<Attribution> Probleme::methode_triviale(std::vector<Attribution> EA_
         }
 
     }
-            EA_retour.clear();
-            return EA_retour;
+    EA_retour.clear();
+    return EA_retour;
+}
+
+
+bool Probleme::isComplet()
+{
+    unsigned int j=0;
+    for(unsigned int i=0; i<_Variables.size(); i++)
+    {
+        for(j=0; j<_EAC.size(); j++)
+        {
+            if(_Variables[i].getIdentifiant()==_EAC[j].getVar())
+            {
+                j=_EAC.size()+1;
+            }
+        }
+        if(j==_EAC.size())
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
+std::vector<Attribution> Probleme::methode_reduction_domaine(std::vector<Attribution> EA_entree,std::vector<Variable> DVC_entree)
+{
+    {
+        bool Attribue=false;
+        Variable varchoisie;
+        std::vector<Attribution> EA_retour;
+
+
+        if(isComplet())
+        {
+            return EA_entree;
+        }
+        else
+        {
+            for(unsigned int i=0; i<_Variables.size(); i++) ///On cherche une variable non attribue
+            {
+                Attribue=false;
+                for(unsigned int j=0; j<EA_entree.size(); i++)
+                {
+                    if(_Variables[i].getIdentifiant()==EA_entree[j].getVar())
+                    {
+                        Attribue=true;  ///Cette variable est deja attribuée
+                        j=EA_entree.size(); //Debranchement
+                    }
+                }
+                if(Attribue==false)///La variable n'est pas attribuée
+                {
+                    varchoisie=_Variables[i]; ///On la choisie
+                    i=_Variables.size(); //Debranchement
+                }
+            }
+            if (Attribue==true) ///Si toutes les variables sont attribuées
+            {
+                EA_retour.clear();
+                return EA_retour;
+            }
+
+            for(unsigned int i=0; i<varchoisie.getDomaine().size(); i++) ///Pour tout le domaine de definition
+            {
+                int val=varchoisie.getDomaine()[i];
+                int var=varchoisie.getIdentifiant();
+                Attribution att(var,val);
+                EA_entree.push_back(att);
+                ///TODO ajouter reduction du domaine
+                EA_retour = methode_reduction_domaine(EA_entree,DVC_entree);  ///Ea_retour=triviale(Ea_entree+"varchoisie=val")
+            }
+
+            if(!EA_retour.empty())
+            {
+                return EA_retour;
+            }
+
+        }
+        EA_retour.clear();
+        return EA_retour;
+    }
+}
+
+std::vector<Variable> Probleme::reduction_domaine(std::vector<Variable> origine,Attribution att)
+{
+
+    std::vector<Contrainte> contraintes;
+    contraintes =SearchContrainteVariable(att.getVar()); ///On recupère les contraintes concernées
+    std::vector<int> tempo;
+    std::vector<int> domaine;
+
+    for(unsigned int j=0; j<contraintes.size(); j++) ///Block de supression de la variable de travail pour simplifier les calculs futurs (la supression se fait en local donc pas de supression définitive)
+    {
+        for(unsigned int k=0; k<contraintes[j].getVariables().size(); k++)
+        {
+            if(contraintes[j].getVariables()[k]==att.getVar())
+            {
+                tempo =contraintes[j].getVariables();
+                tempo.erase(tempo.begin()+k);
+                contraintes[j].setVariables(tempo);
+            }
+        }
+
+    }
+
+    for(unsigned int i=0; i<contraintes.size(); i++)
+    {
+
+        Contrainte contrainteactuelle =contraintes[i];
+        Variable var0 =searchVariable(contrainteactuelle.getVariables()[0],origine);
+        switch(contrainteactuelle.getCode())
+        {
+        case 0:
+        {
+            for(unsigned int j=0; j<origine.size(); j++) ///Pour chaque variable
+            {
+                if(origine[j].getIdentifiant()==var0.getIdentifiant()) ///si on tombe sur la variable complémentaire de celle de l'attribution
+                {
+                    domaine=origine[j].getDomaine(); ///on extrait son domaine
+                    for(unsigned int k=0; k<domaine.size(); k++) ///pour tout son domaine
+                    {
+                        if (att.getValeur()==domaine[k]){///On cherche si la valeur est présente
+                        domaine.erase(tempo.begin()+k);///Si oui on la supprime
+                        }
+                    }
+                    origine[j].setDomaine(domaine);/// et on update son domaine
+                }
+
+            }
+        }
+        break;
+        case 1:
+            {
+            for(unsigned int j=0; j<origine.size(); j++) ///Pour chaque variable
+            {
+                if(origine[j].getIdentifiant()==var0.getIdentifiant()) ///si on tombe sur la variable complémentaire de celle de l'attribution
+                {
+                    domaine=origine[j].getDomaine(); ///on extrait son domaine
+                    for(unsigned int k=0; k<domaine.size(); k++) ///pour tout son domaine
+                    {
+                        if (att.getValeur()!=domaine[k]){///On cherche si une autre valeur est présente
+                        domaine.erase(tempo.begin()+k);///Si oui on la supprime
+                        }
+                    }
+                    origine[j].setDomaine(domaine);/// et on update son domaine
+                }
+
+            }
+
+            }
+break;
+
+        }
+    }
+}
+
+Variable Probleme::searchVariable (int identifiant)
+{
+    for(unsigned int i =0; i<_Variables.size(); i++)
+    {
+        if(_Variables[i].getIdentifiant()==identifiant)
+            return _Variables[i];
+    }
+    cout <<endl << "Variable non trouvee"<<endl;
+    return _Variables[0];
+}
+
+Variable Probleme::searchVariable (int identifiant,std::vector<Variable> origine)
+{
+    for(unsigned int i =0; i<origine.size(); i++)
+    {
+        if(origine[i].getIdentifiant()==identifiant)
+            return origine[i];
+    }
+    cout <<endl << "Variable non trouvee"<<endl;
+    return _Variables[0];
 }

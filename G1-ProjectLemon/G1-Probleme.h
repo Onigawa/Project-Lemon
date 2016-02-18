@@ -30,8 +30,13 @@ public:
     void chargement();
     void addAttribution(Attribution att);
 
-    std::vector<int> SearchContrainteVariable(const int &Achercher);
+    std::vector<Contrainte> SearchContrainteVariable(const int &Achercher);
     std::vector<Attribution> methode_triviale(std::vector<Attribution> EA_entree);
+    std::vector<Attribution> methode_reduction_domaine(std::vector<Attribution> EA_entree,std::vector<Variable> DVC_entree);
+    bool isComplet();
+    std::vector<Variable> reduction_domaine(std::vector<Variable> origine,Attribution att);
+    Variable searchVariable (int identifiant);
+    Variable searchVariable (int identifiant,std::vector<Variable> origine);
 };
 
 #endif // G1-PROBLEME_H_INCLUDED
