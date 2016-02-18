@@ -5,17 +5,17 @@ class Attribution
 {
     /*---Attributs---*/
 private:
-    Variable _Var;         // Variable attribué
+    int _Var;         // Variable attribué
     int _valeur;           // Valeur attribué
 
 public:
     Attribution();
-    Attribution(Variable var, int val);
+    Attribution(int var, int val){_Var=var;_valeur=val;};
     Attribution(const Attribution* attribution);
     ~Attribution(){}
-    Variable getVar(){return _Var;};
+    int getVar(){return _Var;};
     int getValeur(){return _valeur;};
-    void setVariable(Variable var){_Var=var;};
+    void setVariable(int var){_Var=var;};
     void setValeur(int val){_valeur=val;};
 };
 
