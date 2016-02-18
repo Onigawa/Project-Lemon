@@ -302,8 +302,9 @@ std::vector<Variable> Probleme::reduction_domaine(std::vector<Variable> origine,
                     domaine=origine[j].getDomaine(); ///on extrait son domaine
                     for(unsigned int k=0; k<domaine.size(); k++) ///pour tout son domaine
                     {
-                        if (att.getValeur()==domaine[k]){///On cherche si la valeur est présente
-                        domaine.erase(tempo.begin()+k);///Si oui on la supprime
+                        if (att.getValeur()==domaine[k]) ///On cherche si la valeur est présente
+                        {
+                            domaine.erase(tempo.begin()+k);///Si oui on la supprime
                         }
                     }
                     origine[j].setDomaine(domaine);/// et on update son domaine
@@ -313,7 +314,7 @@ std::vector<Variable> Probleme::reduction_domaine(std::vector<Variable> origine,
         }
         break;
         case 1:
-            {
+        {
             for(unsigned int j=0; j<origine.size(); j++) ///Pour chaque variable
             {
                 if(origine[j].getIdentifiant()==var0.getIdentifiant()) ///si on tombe sur la variable complémentaire de celle de l'attribution
@@ -321,8 +322,9 @@ std::vector<Variable> Probleme::reduction_domaine(std::vector<Variable> origine,
                     domaine=origine[j].getDomaine(); ///on extrait son domaine
                     for(unsigned int k=0; k<domaine.size(); k++) ///pour tout son domaine
                     {
-                        if (att.getValeur()!=domaine[k]){///On cherche si une autre valeur est présente
-                        domaine.erase(tempo.begin()+k);///Si oui on la supprime
+                        if (att.getValeur()!=domaine[k]) ///On cherche si une autre valeur est présente
+                        {
+                            domaine.erase(tempo.begin()+k);///Si oui on la supprime
                         }
                     }
                     origine[j].setDomaine(domaine);/// et on update son domaine
@@ -330,11 +332,60 @@ std::vector<Variable> Probleme::reduction_domaine(std::vector<Variable> origine,
 
             }
 
-            }
-break;
+        }
+        break;
 
+        case 2:
+        {
+            for(unsigned int j=0; j<origine.size(); j++) ///Pour chaque variable
+            {
+                for(unsigned int l=0; l<contrainteactuelle.getVariables().size(); l++)
+                {
+                  var0 =searchVariable(contrainteactuelle.getVariables()[l],origine);
+                    if(origine[j].getIdentifiant()==var0.getIdentifiant()) ///si on tombe sur la variable complémentaire de celle de l'attribution
+                    {
+                        domaine=origine[j].getDomaine(); ///on extrait son domaine
+                        for(unsigned int k=0; k<domaine.size(); k++) ///pour tout son domaine
+                        {
+                            if (att.getValeur()==domaine[k]) ///On cherche si la valeur est présente
+                            {
+                                domaine.erase(tempo.begin()+k);///Si oui on la supprime
+                            }
+                        }
+                        origine[j].setDomaine(domaine);/// et on update son domaine
+                    }
+                }
+
+            }
+        }
+        break;
+        case 3:
+        {
+            for(unsigned int j=0; j<origine.size(); j++) ///Pour chaque variable
+            {
+                for(unsigned int l=0; l<contrainteactuelle.getVariables().size(); l++)
+                {
+                  var0 =searchVariable(contrainteactuelle.getVariables()[l],origine);
+                    if(origine[j].getIdentifiant()==var0.getIdentifiant()) ///si on tombe sur la variable complémentaire de celle de l'attribution
+                    {
+                        domaine=origine[j].getDomaine(); ///on extrait son domaine
+                        for(unsigned int k=0; k<domaine.size(); k++) ///pour tout son domaine
+                        {
+                            if (att.getValeur()!=domaine[k]) ///On cherche si une autre valeur est présente
+                            {
+                                domaine.erase(tempo.begin()+k);///Si oui on la supprime
+                            }
+                        }
+                        origine[j].setDomaine(domaine);/// et on update son domaine
+                    }
+                }
+
+            }
+        }
+        break;
         }
     }
+    return origine;
 }
 
 Variable Probleme::searchVariable (int identifiant)
