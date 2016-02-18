@@ -249,8 +249,8 @@ std::vector<Attribution> Probleme::methode_reduction_domaine(std::vector<Attribu
                 int var=varchoisie.getIdentifiant();
                 Attribution att(var,val);
                 EA_entree.push_back(att);
-                ///TODO ajouter reduction du domaine
-                EA_retour = methode_reduction_domaine(EA_entree,DVC_entree);  ///Ea_retour=triviale(Ea_entree+"varchoisie=val")
+                DVC_entree=reduction_domaine(DVC_entree,att); ///On réduit le domaine
+                EA_retour = methode_reduction_domaine(EA_entree,DVC_entree);  ///Ea_retour=methode(Ea_entree+"varchoisie=val") avec domaine reduit
             }
 
             if(!EA_retour.empty())
