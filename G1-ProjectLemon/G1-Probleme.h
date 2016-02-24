@@ -37,6 +37,9 @@ public:
     std::vector<Variable> reduction_domaine(std::vector<Variable> origine,Attribution att);
     Variable searchVariable (int identifiant);
     Variable searchVariable (int identifiant,std::vector<Variable> origine);
+    bool isValable(std::vector<Attribution> att, Contrainte cont);
+    int searchValVarAtt(std::vector<Attribution> att,int Var);
+    bool isAttribue(std::vector<Attribution> att,int Var);
 };
 
 #endif // G1-PROBLEME_H_INCLUDED

@@ -2,38 +2,24 @@
 <CodeBlocks_layout_file>
 	<FileVersion major="1" minor="0" />
 	<ActiveTarget name="Debug" />
-	<File name="G1-Probleme.cpp" open="1" top="1" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="main.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="4658" topLine="68" />
+			<Cursor1 position="108" topLine="0" />
 		</Cursor>
-		<Folding>
-			<Collapse line="17" />
-			<Collapse line="21" />
-			<Collapse line="25" />
-			<Collapse line="29" />
-			<Collapse line="33" />
-			<Collapse line="48" />
-			<Collapse line="183" />
-		</Folding>
 	</File>
 	<File name="G1-Variable.h" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="81" topLine="0" />
 		</Cursor>
 	</File>
+	<File name="G1-Contrainte.h" open="1" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1019" topLine="0" />
+		</Cursor>
+	</File>
 	<File name="G1-Attribution.h" open="1" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="246" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="main.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="108" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="G1-Contrainte.h" open="1" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="605" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="G1-Noeud.cpp" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -43,22 +29,45 @@
 	</File>
 	<File name="G1-Contrainte.cpp" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="267" topLine="0" />
+			<Cursor1 position="1910" topLine="63" />
 		</Cursor>
 	</File>
 	<File name="G1-Probleme.h" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1383" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="G1-Noeud.h" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="891" topLine="0" />
+			<Cursor1 position="1764" topLine="4" />
 		</Cursor>
 	</File>
 	<File name="G1-Variable.cpp" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="45" topLine="0" />
+			<Cursor1 position="292" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="G1-Probleme.cpp" open="1" top="1" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="13078" topLine="15" />
+		</Cursor>
+		<Folding>
+			<Collapse line="9" />
+			<Collapse line="13" />
+			<Collapse line="17" />
+			<Collapse line="21" />
+			<Collapse line="25" />
+			<Collapse line="29" />
+			<Collapse line="33" />
+			<Collapse line="48" />
+			<Collapse line="108" />
+			<Collapse line="113" />
+			<Collapse line="122" />
+			<Collapse line="189" />
+			<Collapse line="209" />
+			<Collapse line="267" />
+			<Collapse line="391" />
+			<Collapse line="402" />
+		</Folding>
+	</File>
+	<File name="G1-Noeud.h" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="891" topLine="0" />
 		</Cursor>
 	</File>
 </CodeBlocks_layout_file>
