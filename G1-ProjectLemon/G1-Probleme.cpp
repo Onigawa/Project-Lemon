@@ -130,7 +130,7 @@ std::vector<Attribution> Probleme::methode_triviale(std::vector<Attribution> EA_
     {
         for(unsigned int i=0; i<_Contraintes.size(); i++) ///On vérifie que pour chaque contrainte
         {
-            if(_Contraintes[i].isValable())///Elle sont vérifiés
+            if(isValable(EA_entree,_Contraintes[i]))///Elle sont vérifiés
             {
                 return EA_entree;  ///Si oui on retourne la solution
             }
