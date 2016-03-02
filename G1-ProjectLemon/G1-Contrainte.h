@@ -1,7 +1,7 @@
 #ifndef G1_CONTRAINTE_H_INCLUDED
 #define G1_CONTRAINTE_H_INCLUDED
 #include <vector>
-
+#include "G1-Attribution.h"
 class Contrainte
 {
     /*---Attributs---*/

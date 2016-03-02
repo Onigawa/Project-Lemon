@@ -130,7 +130,7 @@ std::vector<Attribution> Probleme::methode_triviale(std::vector<Attribution> EA_
     {
         for(unsigned int i=0; i<_Contraintes.size(); i++) ///On vérifie que pour chaque contrainte
         {
-            if(_Contraintes[i].isValable())///Elle sont vérifiés
+            if(isValable(EA_entree,_Contraintes[i]))///Elle sont vérifiés
             {
                 return EA_entree;  ///Si oui on retourne la solution
             }
@@ -341,7 +341,7 @@ std::vector<Variable> Probleme::reduction_domaine(std::vector<Variable> origine,
             {
                 for(unsigned int l=0; l<contrainteactuelle.getVariables().size(); l++)
                 {
-                  var0 =searchVariable(contrainteactuelle.getVariables()[l],origine);
+                    var0 =searchVariable(contrainteactuelle.getVariables()[l],origine);
                     if(origine[j].getIdentifiant()==var0.getIdentifiant()) ///si on tombe sur la variable complémentaire de celle de l'attribution
                     {
                         domaine=origine[j].getDomaine(); ///on extrait son domaine
@@ -365,7 +365,7 @@ std::vector<Variable> Probleme::reduction_domaine(std::vector<Variable> origine,
             {
                 for(unsigned int l=0; l<contrainteactuelle.getVariables().size(); l++)
                 {
-                  var0 =searchVariable(contrainteactuelle.getVariables()[l],origine);
+                    var0 =searchVariable(contrainteactuelle.getVariables()[l],origine);
                     if(origine[j].getIdentifiant()==var0.getIdentifiant()) ///si on tombe sur la variable complémentaire de celle de l'attribution
                     {
                         domaine=origine[j].getDomaine(); ///on extrait son domaine
@@ -409,3 +409,127 @@ Variable Probleme::searchVariable (int identifiant,std::vector<Variable> origine
     cout <<endl << "Variable non trouvee"<<endl;
     return _Variables[0];
 }
+
+int Probleme::searchValVarAtt(std::vector<Attribution> att,int Var)
+{
+    for(unsigned int i=0; i<att.size(); i++)
+    {
+        if(att[i].getVar()==Var)
+        {
+            return att[i].getValeur();
+        }
+    }
+    ///Variable non trouvee
+    return -1;
+}
+
+bool Probleme::isAttribue(std::vector<Attribution> att,int Var)
+{
+    for(unsigned int i=0; i<att.size(); i++)
+    {
+        if(att[i].getVar()==Var)
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+
+bool Probleme::isValable(std::vector<Attribution> att, Contrainte cont)
+{
+    switch(cont.getCode())
+    {
+    case 0: ///Deux variables différentes
+    {
+        if(!isAttribue(att,cont.getVariables()[0])||!isAttribue(att,cont.getVariables()[1]))  ///Si l'une n'est pas attribue la contrainte est forcément respecté
+        {
+            return true;
+        }
+
+
+        if(searchValVarAtt(att,cont.getVariables()[0])!=searchValVarAtt(att,cont.getVariables()[1]))
+        {
+            return true;
+        }
+
+
+        break;
+    }
+
+    case 1: ///Deux variables égales
+    {
+        if(!isAttribue(att,cont.getVariables()[0])||!isAttribue(att,cont.getVariables()[1]))  ///Si l'une n'est pas attribue la contrainte est forcément respecté
+        {
+            return true;
+        }
+        if(searchValVarAtt(att,cont.getVariables()[0])==searchValVarAtt(att,cont.getVariables()[1]))
+        {
+            return true;
+        }
+        break;
+    }
+
+    case 2: ///Plusieurs variables 2 à 2 différentes
+    {
+
+        unsigned int i,j;
+
+        for(i=0; i<cont.getVariables().size()-1; i++) ///parcours de 0 à n-1
+        {
+            while(!isAttribue(att,cont.getVariables()[i])||i>=cont.getVariables().size()-1) ///On verifie que la variable est attribué
+            {
+                i++; /// Si elle ne l'est pas on passe a la suivante
+            };
+
+            for(j=i+1; j<cont.getVariables().size(); j++) ///parcours de 1 à n
+            {
+                while(!isAttribue(att,cont.getVariables()[j])||j>=cont.getVariables().size()) ///On verifie que la variable est attribué
+                {
+                    j++; /// Si elle ne l'est pas on passe a la suivante
+                };
+
+                if(searchValVarAtt(att,cont.getVariables()[i])==searchValVarAtt(att,cont.getVariables()[j]))///si deux valeurs sont identiques alors c'est faux
+                {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+        break;
+    }
+
+    case 3: ///Plusieurs variables 2 à 2 identiques
+    {
+
+
+        unsigned int i,j;
+
+        for(i=0; i<cont.getVariables().size()-1; i++) ///parcours de 0 à n-1
+        {
+            while(!isAttribue(att,cont.getVariables()[i])||i>=cont.getVariables().size()-1) ///On verifie que la variable est attribué
+            {
+                i++; /// Si elle ne l'est pas on passe a la suivante
+            };
+            for(j=i+1; j<cont.getVariables().size(); j++) ///parcours de 1 à n
+            {
+               while(!isAttribue(att,cont.getVariables()[j])||j>=cont.getVariables().size()) ///On verifie que la variable est attribué
+                {
+                    j++; /// Si elle ne l'est pas on passe a la suivante
+                };
+                if(searchValVarAtt(att,cont.getVariables()[i])!=searchValVarAtt(att,cont.getVariables()[j]))///si deux valeurs sont identiques alors c'est faux
+                {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+        break;
+    }
+
+    }
+    return false; ///Code non reconnu
+}
+
