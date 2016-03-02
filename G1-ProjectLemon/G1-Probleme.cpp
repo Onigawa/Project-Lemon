@@ -50,6 +50,7 @@ void Probleme::chargement()
     int identifiant,code, variable;
     std::string mon_fichier = "Probleme.txt";
     std::ifstream fichier(mon_fichier.c_str(), ios::in);
+    std::vector<int> Var;
     if(fichier)
     {
         int nbcontrainte;
@@ -61,17 +62,20 @@ void Probleme::chargement()
             cout << identifiant << " ";
             fichier >> code;
             cout << code << " ";
+
             do
             {
                 fichier >> variable;
 
                 if(variable != -1)
                 {
+                    Var.push_back(variable);
                     cout << variable << " ";
                     //mettre la variable quelque part
                 }
             }
             while(variable != -1);
+            Contrainte(identifiant,code,Var);
             cout << endl;
         }
 

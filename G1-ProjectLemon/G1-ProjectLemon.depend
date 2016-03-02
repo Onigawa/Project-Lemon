@@ -1,14 +1,22 @@
 # depslib dependency file v1.0
-1455290751 source:c:\users\20130127\documents\github\project-lemon\g1-projectlemon\g1-contrainte.cpp
+1456905228 source:c:\users\20130127\documents\github\project-lemon\g1-projectlemon\g1-contrainte.cpp
+	<iostream>
+	"G1-Contrainte.h"
+	<vector>
+	"G1-Variable.h"
 
 1455254698 source:c:\users\20130127\documents\github\project-lemon\g1-projectlemon\g1-probleme.cpp
 
-1455254698 source:c:\users\20130127\documents\github\project-lemon\g1-projectlemon\g1-variable.cpp
+1456905228 source:c:\users\20130127\documents\github\project-lemon\g1-projectlemon\g1-variable.cpp
+	<vector>
+	"G1-Variable.h"
 
-1455254698 source:c:\users\20130127\documents\github\project-lemon\g1-projectlemon\main.cpp
+1456905228 source:c:\users\20130127\documents\github\project-lemon\g1-projectlemon\main.cpp
 	<iostream>
 
-1455287910 source:c:\users\20130127\documents\github\project-lemon\g1-projectlemon\g1-noeud.cpp
+1456905228 source:c:\users\20130127\documents\github\project-lemon\g1-projectlemon\g1-noeud.cpp
+	<vector>
+	"G1-Noeud.h"
 
 1455758062 source:c:\users\k\documents\github\project-lemon\g1-projectlemon\g1-noeud.cpp
 	<vector>
@@ -56,4 +64,21 @@
 
 1455758062 c:\users\k\documents\github\project-lemon\g1-projectlemon\g1-attribution.h
 	"G1-Variable.h"
+
+1456905228 source:c:\users\20130127\documents\github\project-lemon\g1-projectlemon\g1-attribution.cpp
+	"G1-Attribution.h"
+
+1456905228 c:\users\20130127\documents\github\project-lemon\g1-projectlemon\g1-attribution.h
+	"G1-Variable.h"
+
+1456905228 c:\users\20130127\documents\github\project-lemon\g1-projectlemon\g1-variable.h
+	<vector>
+
+1456905228 c:\users\20130127\documents\github\project-lemon\g1-projectlemon\g1-contrainte.h
+	<vector>
+	"G1-Attribution.h"
+
+1456905228 c:\users\20130127\documents\github\project-lemon\g1-projectlemon\g1-noeud.h
+	"G1-Variable.h"
+	<vector>
 
